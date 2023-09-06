@@ -4,7 +4,7 @@
 	import { assets, base } from '$app/paths';
 	import { modeCurrent } from '@skeletonlabs/skeleton';
 
-	import "@finos/perspective-viewer/dist/css/themes.css";
+	import "@finos/perspective-viewer/dist/css/solarized.css";
 
   import type { PerspectiveViewerConfig } from '@finos/perspective-viewer/dist/esm/viewer';
 
@@ -32,7 +32,7 @@
 
 		let plugin = await perspectiveSvelte.getPlugin('Y Line')
 		plugin.max_cells = 100000000;
-		plugin.max_columns = 100000000;		
+		plugin.max_columns = 100000000;
 
 		let WORKER = perspective.worker();
 		let REQ = fetch(assets + '/' + file);
@@ -41,7 +41,7 @@
 		const csv = await resp.text();
 		table = WORKER.table(csv);
 		perspectiveSvelte.load(table);
-		perspectiveSvelte.restore(LAYOUT);
+		// perspectiveSvelte.restore(LAYOUT);
 		perspectiveSvelte.toggleConfig();
 		mounted = true
 	});
@@ -50,7 +50,7 @@
 		if(mounted)
 		{
 		// perspectiveSvelte.restore(LAYOUT);
-		perspectiveSvelte.resetThemes([theme])
+		// perspectiveSvelte.resetThemes([theme])
 	}
 }
 
@@ -65,7 +65,7 @@
 
 </script>
 
-<!-- <div> -->	
+<!-- <div> -->
 	<perspective-viewer bind:this={perspectiveSvelte} />
 <!-- </div> -->
 
